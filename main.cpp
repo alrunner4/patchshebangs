@@ -62,8 +62,15 @@ int main(int argc, const char **argv) {
 
 		temporaryFile.close();
 		file.close();
-		std::remove(argv[n]);
-		std::rename(temporaryFileName, argv[n]);
+		if ( std::remove(argv[n]) != 0) {
+			std::cerr << self << ": couldn't delete file " << argv[n] << std::endl;
+			exit(4);
+		}
+		if ( std::rename(temporaryFileName, argv[n]) != 0 ) {
+			std::cerr << self << ": couldn't replace original file " << argv[n]
+				  << " with temporary file " << temporaryFileName << std::endl;
+			std::exit(4);
+		}
 	}
 
 	// DEBUG
