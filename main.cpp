@@ -67,7 +67,7 @@ int main(int argc, const char **argv) {
 			std::perror(self.c_str());
 			exit(4);
 		}
-		if ( std::rename(temporaryFileName, argv[n]) != 0 ) {
+		if ( std::system((std::string("mv ") + temporaryFileName + " " + argv[n]).c_str()) != 0 ) {
 			std::cerr << self << ": couldn't replace original file " << argv[n]
 				  << " with temporary file " << temporaryFileName << std::endl;
 			std::perror(self.c_str());
