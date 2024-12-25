@@ -56,7 +56,7 @@ int main(int argc, const char **argv) {
 		char temporaryFileName[L_tmpnam];
 		std::tmpnam(temporaryFileName);
 		std::ofstream temporaryFile(temporaryFileName);
-		temporaryFile << "#!" << rewrite->second << shebangLineStream.str() << file.rdbuf();
+		temporaryFile << "#!" << rewrite->second << shebangLineStream.str() << std::endl << file.rdbuf();
 		std::cerr << "DEBUG: rewriting " << rewrite->first << " to " << rewrite->second
 			  << " in " << argv[n] << std::endl;
 
