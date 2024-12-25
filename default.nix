@@ -12,12 +12,12 @@ custom = derivation {
 };
 
 default-wrapper = ''
-	${custom}/bin/patchshebangs \"\$@\" <<REWRITES
-	/bin/bash ${nixpkgs.bash}/bin/bash
-	/usr/bin/bash ${nixpkgs.bash}/bin/bash
-	/bin/env ${nixpkgs.coreutils}/bin/env
-	/usr/bin/env ${nixpkgs.coreutils}/bin/env
-	REWRITES
+${custom}/bin/patchshebangs \"\$@\" <<REWRITES
+/bin/bash ${nixpkgs.bash}/bin/bash
+/usr/bin/bash ${nixpkgs.bash}/bin/bash
+/bin/env ${nixpkgs.coreutils}/bin/env
+/usr/bin/env ${nixpkgs.coreutils}/bin/env
+REWRITES
 '';
 
 in
