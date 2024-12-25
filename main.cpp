@@ -39,6 +39,7 @@ int main(int argc, const char **argv) {
 		std::stringstream shebangLineStream(shebangLine);
 		std::string interpreter;
 		shebangLineStream >> interpreter;
+		shebangLine.clear();
 		std::getline(shebangLineStream, shebangLine);
 
 		if (interpreter.empty()) {
