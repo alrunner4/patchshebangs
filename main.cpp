@@ -46,7 +46,8 @@ int main(int argc, const char **argv) {
 			continue;
 		}
 
-		std::cerr << "DEBUG: file " << argv[n] << " has interpreter: \"" << interpreter << "\"\n";
+		std::cerr << "DEBUG: file " << argv[n] << " has interpreter: \"" << interpreter
+			  << "\" and remainder \"" << shebangLine << "\"\n";
 
 		auto rewrite = rewrites.find(interpreter);
 		if ( rewrite == rewrites.end() ) {
