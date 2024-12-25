@@ -9,11 +9,10 @@
 int main(int argc, const char **argv) {
 	const std::string self(argv[0]);
 	std::map<std::string, std::string> rewrites;
-	std::string line, from, to;
+	std::string line;
 	while ( std::getline(std::cin, line), !line.empty() ) {
 		std::stringstream lineStream(line);
-		from.clear();
-		to.clear();
+		std::string from, to;
 		lineStream >> from >> to;
 		if ( lineStream.bad() || !lineStream.eof() || from.empty() || to.empty() ) {
 			std::cerr << self << ": bad rewrite input: " << line << std::endl;
@@ -46,9 +45,6 @@ int main(int argc, const char **argv) {
 			std::cerr << self << ": shebang line has no interpreter: " << argv[n] << std::endl;
 			continue;
 		}
-
-		std::cerr << "DEBUG: file " << argv[n] << " has interpreter: \"" << interpreter
-			  << "\" and remainder \"" << shebangLine << "\"\n";
 
 		auto rewrite = rewrites.find(interpreter);
 		if ( rewrite == rewrites.end() ) {
