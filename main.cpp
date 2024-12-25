@@ -41,9 +41,11 @@ int main(int argc, const char **argv) {
 		shebangLineStream >> interpreter;
 
 		if (interpreter.empty()) {
-			std::cerr << "shebang line has no interpreter: " << argv[n] << std::endl;
+			std::cerr << self << ": shebang line has no interpreter: " << argv[n] << std::endl;
 			continue;
 		}
+
+		std::cerr << "DEBUG: file " << argv[n] << " has interpreter: \"" << interpreter << "\"\n";
 
 		auto rewrite = rewrites.find(interpreter);
 		if ( rewrite == rewrites.end() ) {
@@ -55,6 +57,8 @@ int main(int argc, const char **argv) {
 		std::tmpnam(temporaryFileName);
 		std::ofstream temporaryFile(temporaryFileName);
 		temporaryFile << "#!" << rewrite->second << file.rdbuf();
+		std::cerr << "DEBUG: rewriting " << rewrite->first << " to " << rewrite->second
+			  << " in " << argv[n] << std::endl;
 
 		temporaryFile.close();
 		file.close();
