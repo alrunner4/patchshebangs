@@ -1,4 +1,5 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ system ? builtins.currentSystem
+, pkgs ? import <nixpkgs> { inherit system; } }:
 
 let
 
@@ -28,8 +29,8 @@ exec $custom/bin/patchshebangs \$TARGETS
 
 in
 derivation {
+	inherit system;
 	name = "patchshebangs";
-	system = builtins.currentSystem;
 	outputs = [ "out" "custom" "default" "batch" ];
 	builder = pkgs.writeShellScript "patchshebangs-builder" ''
 		${pkgs.coreutils}/bin/mkdir -p $custom/bin
