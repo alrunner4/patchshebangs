@@ -21,6 +21,7 @@ do
 		exit 1
 	fi
 	exec ${pkgs.coreutils}/bin/find \"\$1\" -type f -executable | ${pkgs.findutils}/bin/xargs -t $custom/bin/patchshebangs
+	shift
 done
 '';
 
