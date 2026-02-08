@@ -38,5 +38,6 @@ derivation {
 		${pkgs.coreutils}/bin/ln -s $default/bin/patchshebangs $out
 		${pkgs.coreutils}/bin/mkdir -p $batch/bin
 		echo "${batch-wrapper}" >$batch/bin/patchshebangs
+		${pkgs.coreutils}/bin/chmod +x $batch/bin/patchshebangs
 		'';
 }
