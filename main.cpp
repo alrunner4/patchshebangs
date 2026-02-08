@@ -60,8 +60,7 @@ int main(int argc, const char **argv) {
 			continue;
 		}
 
-		char temporaryFileName[L_tmpnam];
-		std::tmpnam(temporaryFileName);
+		std::string temporaryFileName = std::string(argv[n]) + ".patchshebangs";
 		std::ofstream temporaryFile(temporaryFileName);
 		temporaryFile << "#!" << rewrite->second << shebangLine << std::endl << file.rdbuf();
 		temporaryFile.close();
@@ -71,7 +70,7 @@ int main(int argc, const char **argv) {
 			std::perror(self.c_str());
 			exit(4);
 		}
-		if ( std::rename(temporaryFileName, argv[n]) != 0) {
+		if ( std::rename(temporaryFileName.c_str(), argv[n]) != 0) {
 			std::cerr << self << ": couldn't replace original file " << argv[n]
 				  << " with temporary file " << temporaryFileName << std::endl;
 			std::perror(self.c_str());
