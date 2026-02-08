@@ -24,6 +24,10 @@ int main(int argc, const char **argv) {
 		}
 		rewrites.insert(std::make_pair(from, to));
 	}
+	if (rewrites.empty()) {
+		std::cerr << self << ": missing rewrites on stdin" << std::endl;
+		std::exit(3);
+	}
 
 	for ( int n = 1; n < argc; ++n ) {
 		std::ifstream file(argv[n]);
