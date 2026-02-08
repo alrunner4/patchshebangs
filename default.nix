@@ -14,15 +14,15 @@ REWRITES
 
 batch-wrapper = ''
 #!${pkgs.bash}/bin/bash
-while [ -n \"\$1\" ]
-do
-	if [ ! -d \"\$1\" ]; then
-		echo \"error: not a directory: \$1\" >&2
-		exit 1
-	fi
-	exec ${pkgs.findutils}/bin/find \"\$1\" -type f -executable | ${pkgs.findutils}/bin/xargs -t $custom/bin/patchshebangs
-	shift
-done
+if [ $# -gt 1 ]; then
+	echo \"\$0: error: only one directory argument supported" >2&
+	exit 1
+fi
+if [ ! -d \"\$1\" ]; then
+	echo \"\$0: error: not a directory: \$1\" >&2
+	exit 1
+fi
+exec ${pkgs.findutils}/bin/find \"\$1\" -type f -executable | ${pkgs.findutils}/bin/xargs -t $custom/bin/patchshebangs
 '';
 
 in
