@@ -22,7 +22,7 @@ if [ ! -d \"\$1\" ]; then
 	echo \"\$0: error: not a directory: \$1\" >&2
 	exit 1
 fi
-TARGETS=$(${pkgs.findutils}/bin/find \"\$1\" -type f -executable)
+TARGETS=\$(${pkgs.findutils}/bin/find \"\$1\" -type f -executable)
 exec $custom/bin/patchshebangs $TARGETS
 '';
 
