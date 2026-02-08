@@ -15,7 +15,7 @@ REWRITES
 batch-wrapper = ''
 #!${pkgs.bash}/bin/bash
 if [ $# -gt 1 ]; then
-	echo \"\$0: error: only one directory argument supported" >2&
+	echo \"\$0: error: only one directory argument supported\" >&2
 	exit 1
 fi
 if [ ! -d \"\$1\" ]; then
