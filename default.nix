@@ -23,7 +23,7 @@ if [ ! -d \"\$1\" ]; then
 	exit 1
 fi
 TARGETS=$(${pkgs.findutils}/bin/find \"\$1\" -type f -executable)
-exec ${pkgs.findutils}/bin/xargs -t $custom/bin/patchshebangs $TARGETS
+exec $custom/bin/patchshebangs $TARGETS
 '';
 
 in
