@@ -8,6 +8,10 @@
 
 int main(int argc, const char **argv) {
 	const std::string self(argv[0]);
+	if (argc < 2) {
+		std::cerr << self << ": missing file arguments" << std::endl;
+		std::exit(3);
+	}
 	std::map<std::string, std::string> rewrites;
 	std::string line;
 	while ( std::getline(std::cin, line), !line.empty() ) {
