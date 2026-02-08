@@ -22,7 +22,8 @@ if [ ! -d \"\$1\" ]; then
 	echo \"\$0: error: not a directory: \$1\" >&2
 	exit 1
 fi
-exec ${pkgs.findutils}/bin/find \"\$1\" -type f -executable | ${pkgs.findutils}/bin/xargs -t $custom/bin/patchshebangs
+TARGETS=$(${pkgs.findutils}/bin/find \"\$1\" -type f -executable)
+exec ${pkgs.findutils}/bin/xargs -t $custom/bin/patchshebangs $TARGETS
 '';
 
 in
