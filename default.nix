@@ -14,7 +14,7 @@ REWRITES
 
 batch-wrapper = ''
 #!${pkgs.bash}/bin/bash
-if [ $# -gt 1 ]; then
+if [ \$# -gt 1 ]; then
 	echo \"\$0: error: only one directory argument supported\" >&2
 	exit 1
 fi
@@ -23,7 +23,7 @@ if [ ! -d \"\$1\" ]; then
 	exit 1
 fi
 TARGETS=\$(${pkgs.findutils}/bin/find \"\$1\" -type f -executable)
-exec $custom/bin/patchshebangs $TARGETS
+exec $custom/bin/patchshebangs \$TARGETS
 '';
 
 in
