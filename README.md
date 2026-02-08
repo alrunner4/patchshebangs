@@ -19,7 +19,7 @@ patchshebangs = import (builtins.fetchGit {
     url = "git@github.com:alrunner4/patchshebangs";
     ref = "main";
     # you'll probably want to pick a rev, too
-}) { inherit nixpkgs; }
+}) { inherit pkgs; }
 ```
 
 You can then subsequently use it in builder scripts like
